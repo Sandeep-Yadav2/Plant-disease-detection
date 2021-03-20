@@ -11,7 +11,7 @@ Original file is located at
 
 import streamlit as st
 import VGG16
-#import tensorflow as tf
+import tensorflow as tf
 #import streamlit as st
 import matplotlib.pyplot as plt
 from PIL import Image,ImageOps
@@ -19,13 +19,14 @@ import numpy as np
 #import tensorflow as tf
 #from keras.models import load_model
 import io
-#from tensorflow import keras
+from tensorflow import keras
 
 import pandas as pd
 import pickle
 import time
 #@st.cache
-#VGG16=tf.keras.load_model("VGG16")
+VGG16=tf.keras.load_model("VGG16")
+MobileNetV2=tf.keras.load_model("MobileNetV2")
 class plant_diseases_detection():
   
   def page_setup():
@@ -108,18 +109,6 @@ class plant_diseases_detection():
     else:
         st.write("Please select image:")
   
-      
-    #if add_selectbox=='VGG16':
-      #vgg()
-      #st.write("selected")
-      
-      #st.sidebar(add_selectbox,options)
-      #st.slider(('Graph'))
-      #st.add_selectbox(st.sidebar.selectbox("yes",('hello','bolo')))
-      #st.select_slider("select vgg16",options=['Graph','acc'])
-
-
-      #st.sidebar.selectbox(st.sidebar("select the following option",('Graph','predict with this model')),add_selectbox)
   page_setup()
 plant_diseases_detection()
 
