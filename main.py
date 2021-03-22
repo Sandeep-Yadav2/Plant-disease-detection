@@ -30,12 +30,12 @@ import time
 
 from keras.utils.data_utils import get_file
 weights_path = get_file(
-            'the name under the model will be saved',
-            'YOUR URL')
-#model.load_weights(weights_path)
+            'ResNet50.h5',
+            'https://drive.google.com/file/d/1-gaPymt3ztzK3H0mpnyUZA5gEd71ALIA/view?usp=sharing')
+ResNet50.load_weights(weights_path)
 
 
-ResNet50=load_model("https://drive.google.com/file/d/1-gaPymt3ztzK3H0mpnyUZA5gEd71ALIA/view?usp=sharing")
+#ResNet50=load_model("https://drive.google.com/file/d/1-gaPymt3ztzK3H0mpnyUZA5gEd71ALIA/view?usp=sharing")
 class plant_diseases_detection():
   
   def page_setup():
