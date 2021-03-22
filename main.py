@@ -10,7 +10,7 @@ Original file is located at
 #!pip install streamlit
 import mysql.connector
 import streamlit as st
-import VGG16
+#import VGG16
 #import ResNet50
 import tensorflow as tf
 import streamlit as st
