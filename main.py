@@ -8,10 +8,11 @@ Original file is located at
 """
 
 #!pip install streamlit
-
+import mysql.connector
 import streamlit as st
 import VGG16
-import tensorflow as tf
+#import ResNet50
+#import tensorflow as tf
 #import streamlit as st
 import matplotlib.pyplot as plt
 from PIL import Image,ImageOps
@@ -19,14 +20,13 @@ import numpy as np
 #import tensorflow as tf
 #from keras.models import load_model
 import io
-from tensorflow import keras
+#from tensorflow import keras
 
 import pandas as pd
 import pickle
 import time
 #@st.cache
-VGG16=tf.keras.load_model("VGG16")
-MobileNetV2=tf.keras.load_model("MobileNetV2")
+#VGG16=tf.keras.load_model("VGG16")
 class plant_diseases_detection():
   
   def page_setup():
@@ -34,13 +34,11 @@ class plant_diseases_detection():
     
     st.title("Plant Diseases Detection")
     st.markdown("This project is *Really Interesting*! ")
-    def vgg():
-      add_vgg_selecbox=st.sidebar.selectbox('select view',['graph','acc'])
   
     ######### -------------- Sidebarr--------------------->
     add_selectbox = st.sidebar.selectbox(
     'select the model for classification',
-    ('MobileNetV2','VGG16',"ResNet50","InceptionV3","EfficientNet",'Demo Images','Working Demo','Contact us'))
+    ('MobileNetV2','VGG16',"ResNet50","InceptionV3","EfficientNet",'About Data','Working Demo','Contact us'))
     #options=st.selectbox('How would you like to be contacted?',('Email', 'Home phone', 'Mobile phone'))
 
     def classes(pred):
@@ -60,12 +58,20 @@ class plant_diseases_detection():
       predicted_class=(list (dict_classes.keys())[list (dict_classes.values()).index(pred)])
       return predicted_class
 
+    if add_selectbox==('About Data'):
+      st.info("working on it")
+
+
+  
+
+    
+
 
     ############# model selection ################
-    if(add_selectbox=='VGG16' or add_selectbox=='MobileNetV2'):
+    if(add_selectbox=='VGG16' or add_selectbox=='MobileNetV2'or add_selectbox=='ResNet50' or add_selectbox=='InceptionV3' or add_selectbox=='EfficientNet'):
       file_uploader=st.file_uploader('Upload cloth Image for Classification:')
       st.set_option('deprecation.showfileUploaderEncoding', False)
-    if file_uploader is not None:
+      if file_uploader is not None:
         image=Image.open(file_uploader)
         text_io = io.TextIOWrapper(file_uploader)
         image=image.resize((224,224))
@@ -100,15 +106,43 @@ class plant_diseases_detection():
                 st.balloons()
             if(add_selectbox=='MobileNetV2'):
                 st.write("You are choosen Image classification with MobileNetV2")
-                classify_image(image,VGG16)
+                classify_image(image,MobileNetV2)
                 st.success('This Image successufully classified!')
                 with st.spinner('Wait for it...'):
                     time.sleep(2)
                     st.success('Done!')
                     st.balloons()
-    else:
-        st.write("Please select image:")
+            if(add_selectbox=='ResNet50'):
+                st.write("You are choosen Image classification with MobileNetV2")
+                classify_image(image,ResNet50)
+                st.success('This Image successufully classified!')
+                with st.spinner('Wait for it...'):
+                    time.sleep(2)
+                    st.success('Done!')
+                    st.balloons()
+            if(add_selectbox=='InceptionV3'):
+                st.write("You are choosen Image classification with MobileNetV2")
+                #classify_image(image,InceptionV3)
+                st.info("working on it updated soon")
+                st.success('This Image successufully classified!')
+                with st.spinner('Wait for it...'):
+                    time.sleep(2)
+                    st.success('Done!')
+                    st.balloons()
+            if(add_selectbox=='EfficienNet'):
+                st.write("You are choosen Image classification with MobileNetV2")
+                #classify_image(image,EfficientNet)
+                st.info("working on it")
+                st.success('This Image successufully classified!')
+                with st.spinner('Wait for it...'):
+                    time.sleep(2)
+                    st.success('Done!')
+                    st.balloons()
+            
+      else:
+          st.write("Please select image:")
   
+      
   page_setup()
 plant_diseases_detection()
 
