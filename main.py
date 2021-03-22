@@ -21,12 +21,21 @@ import numpy as np
 #from keras.models import load_model
 import io
 #from tensorflow import keras
-
+from keras.utils.data_utils import get_file
 import pandas as pd
 import pickle
 import time
 #@st.cache
-#VGG16=tf.keras.load_model("VGG16")
+#VGG16=tf.keras.load_model("VGG16
+
+from keras.utils.data_utils import get_file
+weights_path = get_file(
+            'the name under the model will be saved',
+            'YOUR URL')
+#model.load_weights(weights_path)
+
+
+ResNet50=load_model("https://drive.google.com/file/d/1-gaPymt3ztzK3H0mpnyUZA5gEd71ALIA/view?usp=sharing")
 class plant_diseases_detection():
   
   def page_setup():
